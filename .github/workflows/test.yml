@@ -33,5 +33,5 @@ jobs:
       with:
         image: 99072010120/tenpo
         registry: docker.io
-        username: ${{ secret.DOCKERHUB_USERNAME }}
-        password: ${{ secret.DOCKERHUB_TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
