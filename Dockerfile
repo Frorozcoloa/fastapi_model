@@ -25,4 +25,4 @@ COPY . .
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación cuando se inicie el contenedor
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["gunicorn ", "src.main:app", "--workers", "4", "uvicorn.workers.UvicornWorker", "--bind" "0.0.0.0:80"]

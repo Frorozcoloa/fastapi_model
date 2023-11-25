@@ -1,8 +1,9 @@
 fastapi
-uvicorn
+uvicorn[standard]
 requests
 torch
 python-dotenv
 pytest
 numpy
 httpx
+gunicorn

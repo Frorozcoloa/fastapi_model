@@ -1,3 +1,4 @@
+"""src.main"""
 from fastapi import FastAPI, HTTPException, Depends
 from contextlib import asynccontextmanager
 from fastapi.security import APIKeyHeader
@@ -17,7 +18,7 @@ ml_model = {}
 # Upload model on startup
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # upload model
+    """Function to upload the model on startup"""
     model = DoubleItStrategy(MODEL_CONFIG["model_path"])
     ml_model["model"] = model
     yield
@@ -35,6 +36,7 @@ app = FastAPI(
 
 # verified api key
 def get_api_key(api_key: str = Depends(api_key_header)):
+    """Function to verify the API key"""
     if api_key == API_CONFIG["API_KEY"]:
         return api_key
     else:
@@ -45,6 +47,13 @@ def get_api_key(api_key: str = Depends(api_key_header)):
 async def predict(
     data: InferenceInput, api_key: str = Depends(get_api_key)
 ) -> InferenceReponse:
+    """Endpoint to make predictions with the model
+    input:
+        data: InferenceInput
+        api_key: str
+    output:
+        InferenceReponse
+    """
     try:
         # get model from package
         result = ml_model["model"].main(data.data)

@@ -1,10 +1,12 @@
+"""src.predict"""
 from abc import ABC, abstractmethod
 import torch
 
 
 # We are going to use a design pattern called strategy pattern (https://refactoring.guru/es/design-patterns/strategy)
 # The idea is that each model that you want to use for prediction, should implement this interface
-class InfereciaStrategy(ABC):
+
+class InfereceStrategy(ABC):
     @abstractmethod
     def upload_model(self, model_path):
         """This method should load the model from the path and store it in the class instance"""
@@ -31,7 +33,7 @@ class InfereciaStrategy(ABC):
         pass
 
 
-class DoubleItStrategy(InfereciaStrategy):
+class DoubleItStrategy(InfereceStrategy):
     """This class implements the inference strategy for the doubleit model"""
 
     def __init__(self, model_path):

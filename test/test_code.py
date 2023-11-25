@@ -1,12 +1,13 @@
+"""test.test_code"""
 import torch
-from src.predict import InfereciaStrategy, DoubleItStrategy
+from src.predict import InfereceStrategy, DoubleItStrategy
 import pytest
 
 
 def test_inference_strategy_interface():
     # Test that the InferenceStrategy interface methods are abstract
     with pytest.raises(TypeError):
-        strategy = InfereciaStrategy()
+        strategy = InfereceStrategy()
         strategy.upload_model("model_path")
         strategy.preprocess("data")
         strategy.predict("data")
