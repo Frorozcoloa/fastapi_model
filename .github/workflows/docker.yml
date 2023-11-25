@@ -12,8 +12,8 @@ jobs:
         uses: actions/checkout@v4
       - name:
         run: |
-            docker build . -t ${{secrets.DOCKERHUB_USERNAME}}/pruebas:lastest
+            docker build . -t ${{secret.DOCKERHUB_USERNAME}}/pruebas:lastest
       - name:
         run: |
-            docker loging -u ${{secrets.DOCKERHUB_USERNAME}} -p {{secrets.DOCKERHUB_TOKEN}}
-            docker push ${{secrets.DOCKERHUB_USERNAME}}/pruebas:lastest
+            docker loging -u ${{secret.DOCKERHUB_USERNAME}} -p {{secret.DOCKERHUB_TOKEN}}
+            docker push ${{secret.DOCKERHUB_USERNAME}}/pruebas:lastest
