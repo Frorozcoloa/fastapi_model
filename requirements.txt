@@ -5,3 +5,4 @@ torch
 python-dotenv
 pytest
 numpy
+httpx
