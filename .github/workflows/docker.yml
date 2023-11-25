@@ -11,7 +11,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-
+      - name: Check variables
+        run: |
+          echo {{secret.DOCKERHUB_USERNAME}} && \
+          echo {{secret.DOCKERHUB_TOKEN}}
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
