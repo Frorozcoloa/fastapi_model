@@ -8,9 +8,12 @@ jobs:
   login:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name:
+        run: |
+            docker build . -t {{secret.DOCKERHUB_USERNAME}}/pruebas:lastest
+      - name:
+        run: |
+            docker loging -u {{secret.DOCKERHUB_USERNAME}} -p {{secret.DOCKERHUB_TOKEN}}
+            docker push {{secret.DOCKERHUB_USERNAME}}/pruebas:lastest
