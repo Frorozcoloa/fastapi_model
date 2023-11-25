@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
 import torch
 
-# Vamos a usar un patron de diseño llamado strategy pattern (https://refactoring.guru/es/design-patterns/strategy)
-# La idea es que cada modelo que se quiera usar para predecir, debe implementar esta interfaz
-
+# We are going to use a design pattern called strategy pattern (https://refactoring.guru/es/design-patterns/strategy)
+# The idea is that each model that you want to use for prediction, should implement this interface
 class InfereciaStrategy(ABC):
     
     @abstractmethod

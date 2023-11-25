@@ -40,10 +40,8 @@ def get_api_key(api_key: str = Depends(api_key_header)):
 @app.post("/predict")
 async def predict(data: List[float], api_key: str = Depends(get_api_key)):
     try:
-        
         # get model from package
         result = app.package['model'].main(data)
-
         return {"result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

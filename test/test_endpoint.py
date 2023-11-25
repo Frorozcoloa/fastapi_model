@@ -1,6 +1,6 @@
 import unittest
 from fastapi.testclient import TestClient
-from main import app
+from src.main import app
 
 class TestAPI(unittest.TestCase):
     def setUp(self):
