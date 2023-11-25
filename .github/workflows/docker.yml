@@ -1,28 +1,39 @@
-name: ci
+name: Build and Push Docker Image
 
 on:
   push:
-    branches: main
+    branches:
+      - "Sprint-3"
 
 jobs:
-  login:
+  build-and-push:
+    name: Push Docker images to Docker Hub
     runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: Construction du container
-        uses: docker/setup-buildx-action@v3
-      - name: Login to myRegistry
-        uses: docker/login-action@v3
-        with:
-          registry: registry.athome.fr
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
         with:
-          context: .
-          file: ./Dockerfile
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Build and push api image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./backend
           push: true
-          tags: ${{secret.DOCKERHUB_USERNAME}}/tenpo:v1
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/eaty-api:${{ github.sha }}
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./front-react
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/eaty-front:${{ github.sha }}
