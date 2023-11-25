@@ -33,5 +33,5 @@ jobs:
       with:
         image: 99072010120/pruebas
         registry: docker.io
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        username: ${{ secret.DOCKERHUB_USERNAME }}
+        password: ${{ secret.DOCKERHUB_TOKEN }}
