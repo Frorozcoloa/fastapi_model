@@ -24,5 +24,6 @@ COPY . .
 # Expone el puerto 8000 en el contenedor
 EXPOSE 8000
 
+RUN chmod +x entrypoint.sh
 # Comando para ejecutar la aplicación cuando se inicie el contenedor
 ENTRYPOINT [ "./entrypoint.sh" ]
