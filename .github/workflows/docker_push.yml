@@ -2,7 +2,7 @@ name: Publish Docker image
 
 on:
   release:
-    types: [push]
+    types: [published]
 
 jobs:
   push_to_registries:
@@ -42,4 +42,4 @@ jobs:
           context: .
           push: true
           tags: ${{steps.meta.outputs.tags}}
-          labels: ${{steps.meta.outputs.labels}}
+          labels: ${{ steps.meta.outputs.labels}}
