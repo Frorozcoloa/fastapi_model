@@ -14,9 +14,3 @@ class InferenceReponse(BaseModel):
     """Clase para definir el esquema de respuesta de la API"""
     error: bool = Field(..., example=False)
     results: Optional[InferenceOutput] = Field(..., example={"result": [2.0, 4.0, 6.0]})
-
-class ErrorResponse(BaseModel):
-    """Clase para definir el esquema de respuesta de error de la API"""
-    error: bool = Field(..., example=True)
-    message: str = Field(..., example="Invalid API Key")
-    traceback: str = Field(None, example='', title='Detailed traceback of the error')
