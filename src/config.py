@@ -3,7 +3,7 @@ from pathlib import Path
 import torch
 from dotenv import dotenv_values
 
-env_path = Path('.') / '.env'
+env_path = Path(".") / ".env"
 
 config = dotenv_values(env_path)
 
@@ -14,4 +14,3 @@ MODEL_CONFIG = {
 API_CONFIG = {
     "API_KEY": config["API_KEY"],
 }
-

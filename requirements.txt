@@ -3,3 +3,5 @@ uvicorn
 requests
 torch
 python-dotenv
+pytest
+numpy

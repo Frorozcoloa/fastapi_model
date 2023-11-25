@@ -19,11 +19,10 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Copia los archivos necesarios al contenedor
-COPY src/main.py .
-COPY doubleit_model.pt .
+COPY . .
 
 # Expone el puerto 8000 en el contenedor
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación cuando se inicie el contenedor
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
