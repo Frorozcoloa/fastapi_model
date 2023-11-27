@@ -52,3 +52,55 @@ def test_double_it_strategy_main():
     result = double_it_strategy.main([1, 2, 3])
     assert isinstance(result, list)
     assert result == [2, 4, 6]
+
+# Importar las bibliotecas necesarias para las pruebas
+import pytest
+from pydantic import ValidationError
+from src.schema import InferenceInput, InferenceOutput, InferenceReponse
+
+# Pruebas para el esquema InferenceInput
+def test_inference_input_valid():
+    input_data = {"data": [1.0, 2.0, 3.0]}
+    assert InferenceInput(**input_data)
+
+def test_inference_input_missing_data():
+    with pytest.raises(ValidationError):
+        InferenceInput()
+
+def test_inference_input_invalid_data_type():
+    with pytest.raises(ValidationError):
+        InferenceInput(data="invalid_data")
+
+# Pruebas para el esquema InferenceOutput
+def test_inference_output_valid():
+    output_data = {"result": [2.0, 4.0, 6.0]}
+    assert InferenceOutput(**output_data)
+
+def test_inference_output_missing_result():
+    with pytest.raises(ValidationError):
+        InferenceOutput()
+
+def test_inference_output_invalid_result_type():
+    with pytest.raises(ValidationError):
+        InferenceOutput(result="invalid_result")
+
+# Pruebas para el esquema InferenceReponse
+def test_inference_response_valid():
+    response_data = {"error": False, "results": {"result": [2.0, 4.0, 6.0]}}
+    assert InferenceReponse(**response_data)
+
+def test_inference_response_missing_error():
+    with pytest.raises(ValidationError):
+        InferenceReponse(results={"result": [2.0, 4.0, 6.0]})
+
+def test_inference_response_invalid_error_type():
+    with pytest.raises(ValidationError):
+        InferenceReponse(error="invalid_error", results={"result": [2.0, 4.0, 6.0]})
+
+def test_inference_response_missing_results():
+    with pytest.raises(ValidationError):
+        InferenceReponse(error=False)
+
+def test_inference_response_invalid_results_type():
+    with pytest.raises(ValidationError):
+        InferenceReponse(error=False, results="invalid_results")
