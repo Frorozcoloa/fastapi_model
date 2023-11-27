@@ -96,4 +96,34 @@ Otra configuración de prueba se enfoca en verificar que las solicitudes a la AP
 
 Las pruebas del patrón Strategy y el flujo de trabajo se han diseñado para asegurar que las clases herederas del patrón Strategy cumplan con los patrones establecidos. Estas pruebas verifican que el flujo de trabajo se ejecute correctamente y que la aplicación siga el diseño modular deseado.
 
-Es importante señalar que realizar pruebas unitarias directas a los modelos de machine learning puede ser desafiante debido a la naturaleza compleja y no determinista de los modelos. Sin embargo, las pruebas de estructura pueden realizarse para garantizar que la interfaz entre la lógica de la aplicación y los modelos sea coherente con la estructura del software.
+Es importante señalar que realizar pruebas unitarias directas a los modelos de machine learning puede ser desafiante debido a la naturaleza compleja y no determinista de los modelos. Sin embargo, las pruebas de estructura pueden realizarse para garantizar que la interfaz entre la lógica de la aplicación y los modelos sea coherente con la estructura del software. Aunque estás se interpretan más como pruebas de integración
+
+Es importante entender que en la investigación se describe el uso de pruebas morfologicas, pero que aun no han sido probadas.
+
+
+## 4 Configuración de Entorno (.env) y Estrategias para CI/CD Continuo
+
+La configuración de entorno es crucial para la ejecución exitosa de la aplicación, y actualmente, el archivo `.env` contiene dos variables importantes: `API_KEY` y `MODEL_PATH`. Para garantizar un flujo de CI/CD continuo y eficiente, se pueden explorar otras estrategias y herramientas.
+
+### 4.1 Configuración de Entorno
+
+En el archivo `.env`, se encuentran las siguientes variables:
+
+* `API_KEY`: Clave de API necesaria para autenticar las solicitudes a la API.
+* `MODEL_PATH`: Ruta del modelo utilizado por la aplicación.
+
+### 4.2 Estrategias para CI/CD Continuo
+
+#### 4.2.1 Uso de Jenkins u Otras Herramientas CI/CD
+
+Considerando la necesidad de un flujo de CI/CD continuo, se puede integrar Jenkins u otras herramientas CI/CD en el proceso. Estas herramientas permiten automatizar la construcción, prueba y despliegue del software de manera eficiente.
+
+* **Jenkins** : Configurar un pipeline en Jenkins que, al detectar cambios en el repositorio, realice automáticamente la construcción, las pruebas y el despliegue si se cumplen los criterios establecidos.
+
+## 5. Entrypoint y Configuración de Gunicorn para Desplegar FastAPI
+
+El entrypoint es el punto de inicio de ejecución de una aplicación y, en este caso, se utiliza Gunicorn (Green Unicorn) para desplegar FastAPI. El código de entrada (entrypoint) generalmente se encuentra en un archivo que se ejecuta para iniciar el servidor web. A continuación, se presenta un ejemplo de código de entrada para Gunicorn configurado para desplegar una aplicación FastAPI.
+
+## 6. requirements.txt
+
+Para definir los requisitos de la aplicación, se utiliza un archivo llamado `requirements.txt`. Este archivo enumera todas las dependencias y versiones específicas de las bibliotecas que la aplicación necesita para ejecutarse correctamente
