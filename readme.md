@@ -25,14 +25,11 @@ La siguiente aplicación está creada en fastapi y se encarga de cargar un model
 |-- requirements.txt
 ```
 
-
 ## **GitHub Workflow**
-
 
 En esta sección se detalla el flujo de trabajo de integración continua (CI) para la aplicación, gestionado a través de GitHub Actions. El proceso comienza con la ejecución de todas las pruebas unitarias, asegurando la integridad del código. Una vez superadas las pruebas, se procede a la creación de la imagen Docker, la cual se almacena en el repositorio.
 
-Es esencial comprender que el flujo de trabajo se describe aquí con fines didácticos. En un entorno de producción, se recomienda crear la imagen solo al realizar un release, garantizando que la imagen se genere cuando esté completamente validada. 
-
+Es esencial comprender que el flujo de trabajo se describe aquí con fines didácticos. En un entorno de producción, se recomienda crear la imagen solo al realizar un release, garantizando que la imagen se genere cuando esté completamente validada.
 
 ## 2. Sección src (Fuente)
 
@@ -56,7 +53,6 @@ El patrón de diseño Strategy se puede combinar de manera efectiva en un ciclo 
 
 Esta sección destaca la flexibilidad y escalabilidad del diseño, permitiendo la expansión y optimización del sistema a medida que se incorporan nuevos modelos o se realizan mejoras en el flujo de trabajo.
 
-
 ### 2.5 Esquema (Schema)
 
 El esquema de la aplicación se encuentra en el módulo `src.schema` y define la estructura de entrada, salida y respuesta de la API. A continuación se presenta el detalle de cada una de estas partes.
@@ -74,7 +70,6 @@ El esquema de salida (`InferenceOutput`) define la estructura de los datos que l
 El esquema de respuesta (`InferenceResponse`) especifica cómo la API responde a las solicitudes. Incluye un campo booleano `error` para indicar si se produjo un error y un campo opcional `results` que contiene la salida de la inferencia. Se proporcionan ejemplos para clarificar la estructura de la respuesta.
 
 Estos esquemas proporcionan una guía clara sobre la estructura de los datos que la API espera y devuelve, facilitando la interacción con la aplicación y mejorando la consistencia en las comunicaciones.
-
 
 ## 3. Pruebas (Tests)
 
@@ -99,7 +94,6 @@ Las pruebas del patrón Strategy y el flujo de trabajo se han diseñado para ase
 Es importante señalar que realizar pruebas unitarias directas a los modelos de machine learning puede ser desafiante debido a la naturaleza compleja y no determinista de los modelos. Sin embargo, las pruebas de estructura pueden realizarse para garantizar que la interfaz entre la lógica de la aplicación y los modelos sea coherente con la estructura del software. Aunque estás se interpretan más como pruebas de integración
 
 Es importante entender que en la investigación se describe el uso de pruebas morfologicas, pero que aun no han sido probadas.
-
 
 ## 4 Configuración de Entorno (.env) y Estrategias para CI/CD Continuo
 
@@ -127,3 +121,22 @@ El entrypoint es el punto de inicio de ejecución de una aplicación y, en este 
 ## 6. requirements.txt
 
 Para definir los requisitos de la aplicación, se utiliza un archivo llamado `requirements.txt`. Este archivo enumera todas las dependencias y versiones específicas de las bibliotecas que la aplicación necesita para ejecutarse correctamente
+
+## 7. Monitoreo del modelo
+
+1. **Infraestructura Segura:**
+   * Establecer un servidor público dentro de la subnet.
+   * Restringir el acceso al servidor solo a través de la VPN de la empresa para garantizar un entorno seguro y controlado.
+2. **Despliegue de MLflow:**
+   * Implementar un servidor de MLflow en el servidor público.
+   * Garantizar que el código siempre seleccione el mejor modelo disponible en el repositorio de MLflow.
+3. **Tracking del Flujo de Modelos:**
+   * Utilizar MLflow para registrar y seguir el flujo de los modelos, incluyendo versiones, métricas de rendimiento y parámetros utilizados.
+4. **Detección de Data Drift:**
+   * Configurar una alarma en la base de datos para detectar incertidumbre alta en el modelo, sirviendo como señal temprana de posible data drift.
+5. **Integración de Evently AI:**
+   * Implementar la librería Evently AI para análisis periódicos del modelo con datos nuevos y cálculo de errores.
+6. **Dashboard de Monitoreo (Grafana):**
+   * Crear un dashboard en Grafana para visualizar informes generados por Evently AI y la evolución del modelo.
+7. **Alarmas y Notificaciones:**
+   * Establecer alarmas en el sistema que notifiquen al equipo de data scientists ante signos de data drift o incertidumbre inusual.
